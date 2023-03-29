@@ -47,22 +47,26 @@ def ndmeshfromdata(source_train, target_train=None, points=20):
 
 
 def plot_grid_warp(input, output, s1=10, s2=20, linewidth=1,
-                   c1='blue', c2='orange', label1='', label2='', ax=None):
+                   c1='blue', c2='orange', label1='', label2='', alpha=1,  ax=None):
     dim = input.shape[1]
     if ax is None:
         ax = plt.subplot(projection='3d') if dim == 3 else plt.subplot()
     input_ax = [input[:, i] for i in range(dim)]
     output_ax = [output[:, i] for i in range(dim)]
-    ax.scatter(*input_ax, s=s1, c=c1, label=label1)
-    ax.scatter(*output_ax, s=s2, c=c2, label=label2)
+
+
+
     for i in range(output.shape[0]):
         pxx = [input[i, 0], output[i, 0]]
         pyy = [input[i, 1], output[i, 1]]
         if output.shape[1] == 3:
             pzz = [input[i, 2], output[i, 2]]
-            ax.plot(pxx, pyy, pzz, color='k', linewidth=linewidth)
+            ax.plot(pxx, pyy, pzz, color='k', linewidth=linewidth, alpha=alpha)
         else:
-            ax.plot(pxx, pyy, color='k', linewidth=linewidth)
+            ax.plot(pxx, pyy, color='k', linewidth=linewidth, alpha=alpha)
+
+    ax.scatter(*input_ax, s=s1, c=c1, label=label1)
+    ax.scatter(*output_ax, s=s2, c=c2, label=label2)
 
 
 def plot_knn_graph(points, knn_indices, alpha=.8):

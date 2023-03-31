@@ -1,2 +1,3 @@
 # kNN-Res_Demo
-This is a simple demo for the kNN-RES paper
+This is a simple demo for kNN-Res: Residual Neural Network with
+kNN-Graph coherence for point cloud registration.
